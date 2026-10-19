@@ -1,7 +1,9 @@
 package com.example.supportticket.controller;
 
+import com.example.supportticket.dto.TicketResponse;
 import com.example.supportticket.dto.UserRequest;
 import com.example.supportticket.dto.UserResponse;
+import com.example.supportticket.iservice.TicketService;
 import com.example.supportticket.iservice.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final TicketService ticketService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, TicketService ticketService) {
         this.userService = userService;
+        this.ticketService = ticketService;
     }
 
     @PostMapping
@@ -51,5 +55,10 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/tickets")
+    public ResponseEntity<List<TicketResponse>> getTicketsByUser(@PathVariable Long id) {
+        return ResponseEntity.ok(ticketService.getTicketsByUserId(id));
     }
 }
