@@ -1,11 +1,13 @@
 package com.example.supportticket.service;
 
 import com.example.supportticket.dto.CreateTicketRequest;
+import com.example.supportticket.dto.PageResponse;
 import com.example.supportticket.dto.TicketRequest;
 import com.example.supportticket.dto.TicketResponse;
 import com.example.supportticket.dto.TicketStatusRequest;
 import com.example.supportticket.entity.Ticket;
 import com.example.supportticket.entity.User;
+import com.example.supportticket.enums.Priority;
 import com.example.supportticket.enums.Role;
 import com.example.supportticket.enums.TicketStatus;
 import com.example.supportticket.exception.BadRequestException;
@@ -13,6 +15,10 @@ import com.example.supportticket.exception.ResourceNotFoundException;
 import com.example.supportticket.iservice.TicketService;
 import com.example.supportticket.repository.TicketRepository;
 import com.example.supportticket.repository.UserRepository;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -44,6 +50,22 @@ public class TicketServiceImpl implements TicketService {
         ticket.setStatus(TicketStatus.OPEN);
         ticket.setCreatedBy(creator);
         return TicketResponse.from(ticketRepository.save(ticket));
+    }
+
+    @Override
+    public PageResponse<TicketResponse> getTickets(TicketStatus status, Priority priority, String search,
+                                                   Pageable pageable) {
+        Ticket probe = new Ticket();
+        probe.setStatus(status);
+        probe.setPriority(priority);
+        if (search != null && !search.isBlank()) {
+            probe.setTitle(search.trim());
+        }
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+        Page<Ticket> tickets = ticketRepository.findAll(Example.of(probe, matcher), pageable);
+        return PageResponse.from(tickets.map(TicketResponse::from));
     }
 
     @Override
