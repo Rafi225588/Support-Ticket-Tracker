@@ -1,0 +1,95 @@
+<div class="page-header">
+  <h1>{{ isEdit ? 'Edit Ticket #' + ticketId : 'New Ticket' }}</h1>
+</div>
+
+@if (error()) {
+  <div class="alert alert-error">{{ error() }}</div>
+}
+
+@if (loading()) {
+  <div class="card">Loading...</div>
+} @else {
+  <form class="card form-card" #f="ngForm" (ngSubmit)="save()">
+    @if (!isEdit) {
+      <div class="form-group">
+        <label for="createdById">Created By (Customer)</label>
+        <select
+          id="createdById"
+          name="createdById"
+          [(ngModel)]="createdById"
+          required
+          #creator="ngModel"
+        >
+          <option [ngValue]="null" disabled>Select a customer</option>
+          @for (c of customers(); track c.id) {
+            <option [ngValue]="c.id">{{ c.name }} ({{ c.email }})</option>
+          }
+        </select>
+        @if (customers().length === 0) {
+          <div class="field-error">
+            Kono CUSTOMER user nai. Age ekta customer user banao (Swagger diye ba Users page theke).
+          </div>
+        }
+        @if (creator.invalid && creator.touched) {
+          <div class="field-error">Customer select korte hobe</div>
+        }
+      </div>
+    }
+
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        [(ngModel)]="title"
+        required
+        minlength="5"
+        maxlength="150"
+        placeholder="Short summary of the problem"
+        #titleCtl="ngModel"
+      />
+      @if (titleCtl.invalid && titleCtl.touched) {
+        <div class="field-error">Title must be between 5 and 150 characters</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        name="description"
+        rows="6"
+        [(ngModel)]="description"
+        required
+        maxlength="2000"
+        placeholder="Describe the problem in detail"
+        #descCtl="ngModel"
+      ></textarea>
+      @if (descCtl.invalid && descCtl.touched) {
+        <div class="field-error">Description is required (max 2000 characters)</div>
+      }
+      <div class="hint">{{ description.length }} / 2000</div>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select id="priority" name="priority" [(ngModel)]="priority" required #prioCtl="ngModel">
+        <option value="" disabled>Select priority</option>
+        @for (p of priorities; track p) {
+          <option [value]="p">{{ p }}</option>
+        }
+      </select>
+      @if (prioCtl.invalid && prioCtl.touched) {
+        <div class="field-error">Priority is required</div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn" [disabled]="f.invalid || saving()">
+        {{ saving() ? 'Saving...' : isEdit ? 'Update Ticket' : 'Create Ticket' }}
+      </button>
+      <a class="btn btn-secondary" routerLink="/tickets">Cancel</a>
+    </div>
+  </form>
+}

@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: #2563eb; }
+.btn:disabled { background: #94a3b8; cursor: not-allowed; }
+.btn-secondary { background: #64748b; }
+.btn-secondary:hover { background: #475569; }
+.btn-danger { background: #ef4444; }
+.btn-danger:hover { background: #dc2626; }
+.btn-sm { padding: 4px 10px; font-size: 13px; }
+
+/* Form */
+label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #93c5fd;
+  border-color: #3b82f6;
+}
+
+.form-group { margin-bottom: 16px; }
+.field-error { color: #dc2626; font-size: 13px; margin-top: 4px; }
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+th, td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+th { background: #f8fafc; font-weight: 600; }
+tbody tr:hover { background: #f8fafc; }
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.status-OPEN { background: #dbeafe; color: #1d4ed8; }
+.status-IN_PROGRESS { background: #fef3c7; color: #b45309; }
+.status-RESOLVED { background: #dcfce7; color: #15803d; }
+.status-CLOSED { background: #e2e8f0; color: #475569; }
+.priority-LOW { background: #e2e8f0; color: #475569; }
+.priority-MEDIUM { background: #dbeafe; color: #1d4ed8; }
+.priority-HIGH { background: #fed7aa; color: #c2410c; }
+.priority-URGENT { background: #fecaca; color: #b91c1c; }
+
+/* Messages */
+.alert {
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.alert-error { background: #fee2e2; color: #991b1b; }
+.alert-success { background: #dcfce7; color: #166534; }

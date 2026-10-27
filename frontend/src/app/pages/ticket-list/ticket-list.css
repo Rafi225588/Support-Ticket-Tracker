@@ -1,0 +1,66 @@
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.page-header h1 {
+  margin: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.toolbar select {
+  width: 170px;
+}
+
+.table-card {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.title-link {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.title-link:hover {
+  text-decoration: underline;
+}
+
+.center {
+  text-align: center;
+  color: #64748b;
+  padding: 24px;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}

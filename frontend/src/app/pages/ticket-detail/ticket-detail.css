@@ -1,0 +1,75 @@
+.back-link {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #1d4ed8;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.card {
+  margin-bottom: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #475569;
+}
+
+.description {
+  white-space: pre-wrap;
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.meta {
+  display: grid;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+.meta-label {
+  display: inline-block;
+  width: 110px;
+  color: #64748b;
+}
+
+.status-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: #64748b;
+  margin: 0;
+}
