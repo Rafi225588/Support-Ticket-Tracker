@@ -114,3 +114,17 @@ All errors come back in the same format. For example, moving a CLOSED ticket bac
 - Emails are saved in lowercase, so the same email with different letter case counts as a duplicate (409).
 - Only customers can create tickets, and an agent who tries gets a 400. A customer who already has tickets can't be changed to an agent (409), otherwise those tickets would end up with an agent as creator.
 - There is no model package, and the enums have their own package, as my supervisor asked.
+
+## Frontend (Angular)
+
+The Angular app is in the `frontend` folder. It needs Node.js (LTS) and Angular CLI.
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+It runs on http://localhost:4200. The dev server uses `proxy.conf.json` to forward `/api` requests to the backend on `localhost:8080`, so the backend must be running first.
+
+Pages: ticket list (filter, search, pagination), create/edit ticket, ticket details with status change buttons (only valid next statuses are shown), and a users page.
